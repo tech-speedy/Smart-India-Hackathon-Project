@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EduPulse | QR Scanner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet"/>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f7fa;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1e2a38;
+      padding: 1rem 2rem;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #00bcd4;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: #00bcd4;
+    }
+
+    .scanner-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .scanner-header h2 {
+      font-size: 2rem;
+      color: #2196f3;
+      margin-bottom: 0.5rem;
+    }
+
+    .scanner-header p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    .scanner-box {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    #video {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 8px;
+      border: 2px solid #2196f3;
+    }
+
+    .status {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #333;
+    }
+
+    .quick-links {
+      margin-top: 2rem;
+    }
+
+    .quick-links a {
+      display: inline-block;
+      margin: 0.4rem;
+      padding: 0.7rem 1.1rem;
+      background: #2196f3;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+
+    .quick-links a:hover {
+      background: #1976d2;
+    }
+
+    footer {
+      background: #1e2a38;
+      color: #fff;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #00bcd4;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">EduPulse</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="attendance.html">Attendance</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Scanner Section -->
+  <div class="scanner-container">
+    <div class="scanner-header">
+      <h2>QR Attendance Scanner</h2>
+      <p>Scan student QR codes to mark attendance instantly.</p>
+    </div>
+
+    <div class="scanner-box">
+      <video id="video" autoplay></video>
+      <div class="status" id="status">Initializing camera...</div>
+    </div>
+
+    <div class="quick-links">
+      <a href="attendance.html">Back to Attendance</a>
+      <a href="real-time-display.html">Live Display</a>
+      <a href="dashboard.html">Dashboard</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 EduPulse. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms of Use</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </footer>
+
+  <!-- Basic Camera Setup -->
+  <script>
+    const video = document.getElementById('video');
+    const status = document.getElementById('status');
+
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+      .then(stream => {
+        video.srcObject = stream;
+        status.textContent = "Camera active. Awaiting QR code...";
+      })
+      .catch(err => {
+        status.textContent = "Camera access denied or unavailable.";
+        console.error(err);
+      });
+  </script>
+</body>
+</html>

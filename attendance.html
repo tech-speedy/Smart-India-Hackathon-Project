@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>EduPulse | Attendance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet"/>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f7fa;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1e2a38;
+      padding: 1rem 2rem;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #00bcd4;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: #00bcd4;
+    }
+
+    /* Container */
+    .attendance-container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    /* Header */
+    .attendance-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .attendance-header h2 {
+      font-size: 2rem;
+      color: #2196f3;
+      margin-bottom: 0.5rem;
+    }
+    .attendance-header p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    /* Form Section */
+    .form-section {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+    }
+    .student-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+    .student-row label {
+      flex: 1;
+      font-weight: 500;
+    }
+    .student-row select {
+      padding: 0.4rem 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 0.95rem;
+    }
+    .btn-submit {
+      display: block;
+      width: 100%;
+      max-width: 200px;
+      margin: 1rem auto 0;
+      padding: 0.8rem 1.2rem;
+      background: #2196f3;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn-submit:hover {
+      background: #1976d2;
+    }
+
+    /* Summary Cards */
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .summary-card {
+      background: #fff;
+      text-align: center;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    .summary-card:hover {
+      transform: translateY(-5px);
+    }
+    .summary-card i {
+      font-size: 2rem;
+      color: #2196f3;
+      margin-bottom: 0.5rem;
+    }
+    .summary-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+    .summary-card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    /* Quick Links */
+    .quick-links {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .quick-links a {
+      display: inline-block;
+      margin: 0.4rem;
+      padding: 0.7rem 1.1rem;
+      background: #2196f3;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+    .quick-links a:hover {
+      background: #1976d2;
+    }
+
+    /* Footer */
+    footer {
+      background: #1e2a38;
+      color: #fff;
+      padding: 2rem;
+      text-align: center;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover {
+      color: #00bcd4;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .summary {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">EduPulse</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="reports.html">Reports</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="attendance-container">
+
+    <div class="attendance-header">
+      <h2>Attendance Panel</h2>
+      <p>(Staff only) Mark and calculate attendance for today.</p>
+    </div>
+
+    <div id="form-section" class="form-section" style="display: none;">
+      <form id="attendanceForm">
+        <div id="studentList"></div>
+        <button type="submit" class="btn-submit">Submit Attendance</button>
+      </form>
+    </div>
+
+    <div id="summarySection" class="summary" style="display: none;">
+      <div class="summary-card">
+        <i class="fas fa-calendar-check"></i>
+        <h3>Today's Attendance</h3>
+        <p id="todayAttendance">Marked: --</p>
+      </div>
+      <div class="summary-card">
+        <i class="fas fa-history"></i>
+        <h3>Monthly Summary</h3>
+        <p id="monthlySummary">Attendance: --%</p>
+      </div>
+      <div class="summary-card">
+        <i class="fas fa-user-clock"></i>
+        <h3>Late Entries</h3>
+        <p id="lateEntries">-- this month</p>
+      </div>
+    </div>
+
+    <div class="quick-links">
+      <a href="qr-scanner.html">QR Scanner</a>
+      <a href="real-time-display.html">Live Display</a>
+      <a href="dashboard.html">Back to Dashboard</a>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 EduPulse. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms of Use</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </footer>
+
+  <!-- Logic -->
+  <script>
+    // In a real app, userRole would come from your auth/session
+    const userRole = 'staff'; // switch to 'student' to hide form
+
+    const formSection = document.getElementById('form-section');
+    const studentList = document.getElementById('studentList');
+    const summarySection = document.getElementById('summarySection');
+
+    if (userRole === 'staff') {
+      formSection.style.display = 'block';
+      // Generate 20 student rows
+      for (let i = 1; i <= 20; i++) {
+        const row = document.createElement('div');
+        row.className = 'student-row';
+        row.innerHTML = `
+          <label>Student ${i}</label>
+          <select name="status${i}">
+            <option value="present">Present</option>
+            <option value="late">Late</option>
+            <option value="absent">Absent</option>
+          </select>
+        `;
+        studentList.appendChild(row);
+      }
+    }
+
+    document.getElementById('attendanceForm').addEventListener('submit', function(e) {e.preventDefault();
+
+    let present = 0, late = 0;
+    const records = [];
+
+    for (let i = 1; i <= 20; i++) {
+        const status = document.querySelector(`select[name="status${i}"]`).value;
+        if (status === 'present') present++;
+        if (status === 'late') late++;
+        records.push({ student: `Student ${i}`, status });
+    }
+
+    localStorage.setItem("attendanceRecords", JSON.stringify(records));
+
+    const percentage = Math.round((present / 20) * 100);
+    document.getElementById("todayAttendance").textContent = `Marked: ${present} Present`;
+    document.getElementById("monthlySummary").textContent = `Attendance: ${percentage}%`;
+    document.getElementById("lateEntries").textContent = `${late} this month`;
+
+    summarySection.style.display = "grid";
+    });
+
+  </script>
+</body>
+</html>

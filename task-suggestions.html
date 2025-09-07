@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EduPulse | Task Suggestions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet"/>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f7fa;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1e2a38;
+      padding: 1rem 2rem;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #00bcd4;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: #00bcd4;
+    }
+
+    .suggestion-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    .suggestion-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .suggestion-header h2 {
+      font-size: 2rem;
+      color: #2196f3;
+      margin-bottom: 0.5rem;
+    }
+
+    .suggestion-header p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .task-box {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    .task-list {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .task-list li {
+      background: #f0f4f8;
+      margin-bottom: 0.8rem;
+      padding: 0.8rem 1rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      font-size: 0.95rem;
+    }
+
+    .btn-generate {
+      display: block;
+      margin: 1rem auto;
+      padding: 0.8rem 1.5rem;
+      background: #2196f3;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-generate:hover {
+      background: #1976d2;
+    }
+
+    .quick-links {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .quick-links a {
+      display: inline-block;
+      margin: 0.4rem;
+      padding: 0.7rem 1.1rem;
+      background: #2196f3;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+
+    .quick-links a:hover {
+      background: #1976d2;
+    }
+
+    footer {
+      background: #1e2a38;
+      color: #fff;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #00bcd4;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">EduPulse</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="daily-planner.html">Planner</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Task Suggestions -->
+  <div class="suggestion-container">
+    <div class="suggestion-header">
+      <h2>Personalized Task Suggestions</h2>
+      <p>Get academic tasks tailored to your interests and goals.</p>
+    </div>
+
+    <div class="task-box">
+      <button class="btn-generate" onclick="generateTasks()">Generate Suggestions</button>
+      <ul class="task-list" id="taskList"></ul>
+    </div>
+
+    <div class="quick-links">
+      <a href="daily-planner.html">Go to Planner</a>
+      <a href="dashboard.html">Back to Dashboard</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 EduPulse. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms of Use</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </footer>
+
+  <!-- Task Logic -->
+  <script>
+    function generateTasks() {
+      const tasks = [
+        "Revise sorting algorithms and implement Quick Sort in C.",
+        "Watch a tutorial on molecular vibrations and take notes.",
+        "Complete 2 mock aptitude questions from previous NIT papers.",
+        "Write a short program to simulate hash collisions.",
+        "Read 5 pages from NEP 2020 and summarize key points.",
+        "Organize your planner for the upcoming week.",
+        "Practice 3 thermodynamics problems from your reference book.",
+        "Explore interdisciplinary applications of graph theory.",
+        "Update your goal tracker with this week's progress.",
+        "Review your last attendance report and reflect on patterns."
+      ];
+
+      const taskList = document.getElementById("taskList");
+      taskList.innerHTML = "";
+
+      const shuffled = tasks.sort(() => 0.5 - Math.random()).slice(0, 5);
+      shuffled.forEach(task => {
+        const li = document.createElement("li");
+        li.textContent = task;
+        taskList.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
